@@ -5,7 +5,7 @@ edition = "2021"
 description = "A TUI-based idle game with an IT/DevOps theme"
 
 [dependencies]
-ratatui = "0.29"
+ratatui = "0.28"
 crossterm = { version = "0.28", features = ["event-stream"] }
 tokio = { version = "1", features = ["full"] }
 serde = { version = "1", features = ["derive"] }
