@@ -12,7 +12,7 @@ cargo run -- --reset # Delete save data and start fresh
 cargo run -- --version
 ```
 
-Rust 2024 edition — `gen` is a reserved keyword; use `r#gen` / `r#gen_range` when calling rand methods.
+Rust 2021 edition.
 
 ## Architecture
 
@@ -51,4 +51,4 @@ src/
 - **Game/UI boundary**: `game/` has no UI imports. Components get `&GameState` for rendering and return `Action`s for mutation.
 - **Focus dispatch**: Focused component handles keys first via `handle_key_with_state()`. Unhandled keys fall through to global bindings in `app.rs`.
 - **Serde compat**: New GameState fields use `#[serde(default)]` so old saves load correctly.
-- **Rust 2024 quirk**: rand's `.gen()` and `.gen_range()` must be called as `.r#gen()` and `.r#gen_range()`.
+- **Edition**: Using Rust 2021 for broad toolchain compatibility.

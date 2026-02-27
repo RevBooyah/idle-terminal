@@ -1,7 +1,7 @@
 [package]
 name = "idle-terminal"
 version = "0.1.0"
-edition = "2024"
+edition = "2021"
 description = "A TUI-based idle game with an IT/DevOps theme"
 
 [dependencies]

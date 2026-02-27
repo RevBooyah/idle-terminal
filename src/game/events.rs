@@ -124,16 +124,16 @@ pub fn maybe_generate_event(
     total_compute: f64,
 ) -> Option<GameEvent> {
     let chance = BASE_EVENT_CHANCE + (monitoring_count as f64 * MONITORING_BONUS);
-    if rng.r#gen::<f64>() >= chance {
+    if rng.gen::<f64>() >= chance {
         return None;
     }
 
     // Weight good events higher than bad ones (60/40)
-    let roll: f64 = rng.r#gen();
+    let roll: f64 = rng.gen();
     let kind = if roll < 0.25 {
         // Bonus drop (25%)
         let amount = total_compute * 0.01 + 10.0; // 1% of current compute + base
-        let resource = match rng.r#gen_range(0..3) {
+        let resource = match rng.gen_range(0..3) {
             0 => BonusResource::Compute,
             1 => BonusResource::Bandwidth,
             _ => BonusResource::Storage,
@@ -145,23 +145,23 @@ pub fn maybe_generate_event(
     } else if roll < 0.40 {
         // Traffic spike (15%)
         GameEventKind::TrafficSpike {
-            multiplier: 1.5 + rng.r#gen::<f64>() * 1.5, // 1.5x to 3.0x
-            duration_ticks: rng.r#gen_range(20..60),     // 5-15 seconds
+            multiplier: 1.5 + rng.gen::<f64>() * 1.5, // 1.5x to 3.0x
+            duration_ticks: rng.gen_range(20..60),     // 5-15 seconds
         }
     } else if roll < 0.50 {
         // Viral repo (10%)
         GameEventKind::ViralRepo {
-            bonus_reputation: 1.0 + rng.r#gen::<f64>() * 5.0,
+            bonus_reputation: 1.0 + rng.gen::<f64>() * 5.0,
         }
     } else if roll < 0.60 {
         // Open source (10%)
         GameEventKind::OpenSourceContribution {
-            bonus_reputation: 0.5 + rng.r#gen::<f64>() * 2.0,
+            bonus_reputation: 0.5 + rng.gen::<f64>() * 2.0,
         }
     } else if roll < 0.75 {
         // DDoS (15%)
         GameEventKind::DDoSAttack {
-            severity: rng.r#gen_range(1..6),
+            severity: rng.gen_range(1..6),
         }
     } else if roll < 0.85 {
         // Security breach (10%)
